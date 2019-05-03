@@ -1,0 +1,44 @@
+#include <iostream>
+
+using namespace std;
+int main() {
+    int goods_price; // 상품가격
+    scanf("%d", &goods_price); // 상품가격 입력
+
+    int coin = 1000 - goods_price; // 잔돈
+    int cnt = 0; // 최소 가짓수를 세기 위한 변수
+    while (coin != 0) {
+        if (coin >= 500) {
+            coin %= 500;
+            cnt += 1;
+        }
+
+        if (coin >= 100) {
+            cnt += coin / 100;
+            coin %= 100;
+        }
+
+        if (coin >= 50) {
+            cnt += coin / 50;
+            coin %= 50;
+        }
+
+        if (coin >= 10) {
+            cnt += coin / 10;
+            coin %= 10;
+        }
+
+        if (coin >= 5) {
+            cnt += coin / 5;
+            coin %= 5;
+        }
+
+        if (coin >= 1) {
+            cnt += coin / 1;
+            coin %= 1;
+        }
+    }
+
+    printf("%d", cnt);
+    return 0;
+}
