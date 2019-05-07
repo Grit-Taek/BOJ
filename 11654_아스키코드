@@ -1,0 +1,12 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    char c;
+    scanf("%c",&c);  // 문자로 입력받고
+    printf("%d",c);  // 숫자로 출력하면 아스키 코드 값 나온다.
+    return 0;
+
+}
