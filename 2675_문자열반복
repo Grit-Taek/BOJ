@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    int tc;
+    int n;
+    string str;
+    cin >> tc;
+    for(int i=0;i<tc;i++)
+    {
+        cin >> n;
+        cin >> str;
+        for(int i=0;i<str.size();i++)  // size()는 글자의 개수(크기) 반환
+        {
+            for(int k=0;k<n;k++)
+                cout << str[i];
+        }
+        cout << "\n";
+    }
+    return 0;
+
+}
