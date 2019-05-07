@@ -1,0 +1,31 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main() {
+    string s;
+    int arr[26]= {0,};
+    int max = 0;
+    char answer;
+    getline(cin, s);  // getline 하면 띄어쓰기 있는 문자열도 하나의 문자열로 판단
+    // 아스키 코드를 이용해서 배열에 각 알파벳이 몇 번 나왔는지 넣어준다.
+    for (int i = 0; i < s.length(); i++) {   // size, length 두개는 같은 의미이다.
+        if (s[i] >= 65 && s[i] <= 90)   // 그냥 문자에서 'a'를 뺀것과 97을 뺀것의 값은 같다.
+            arr[s[i] - 65] += 1;        // 문자를 빼건 숫자를 빼건 값은 숫자가 나온다.
+        else if (s[i] >= 97 && s[i] <= 122)
+            arr[s[i] - 97] += 1;
+    }
+
+    for (int i = 0; i < 26; i++) {
+        if (arr[i] > max) {
+            answer = i + 65;
+            max = arr[i];
+        }
+        else if (arr[i] == max)
+            answer = '?';
+    }
+
+    cout << answer << "\n";
+
+    return 0;
+}
