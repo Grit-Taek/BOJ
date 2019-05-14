@@ -1,0 +1,33 @@
+
+// 문자열 처리를 하는 코드이다.
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    string str;
+    getline(cin,str);  // getline을 이용하면 string은 하나의 단어만 입력이 가능하지만, getline은 한 문장을 받아들인다. 
+
+    int cnt = 1;
+    int i=0;
+    int size = str.length();  // string은 size()와 length()의 역할이 같다. 문자의 개수 반환
+
+    for(int i=0;i<size;i++)
+    {
+        if(str[i] == ' ')
+            cnt++;
+    }
+
+    if(str[0] == ' ')
+        cnt--;
+
+    if(str[size-1] == ' ')
+        cnt--;
+
+    cout << cnt;
+
+    return 0;
+
+}
