@@ -1,0 +1,34 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    int tc;
+    scanf("%d",&tc);
+
+    for(int i=0;i<tc;i++)
+    {
+        int stickLen, antNum;
+        scanf("%d %d", &stickLen, &antNum);
+
+        int maxLen=0, minLen = 0;
+        for(int i=0;i<antNum;i++)
+        {
+            int ant;
+            scanf("%d", &ant);
+            int maxAnt = max(stickLen-ant, ant);
+            int minAnt = min(stickLen-ant, ant);
+
+            maxLen = max(maxAnt,maxLen);
+            minLen = max(minAnt,minLen);
+        }
+
+        printf("%d %d\n",minLen,maxLen);
+    }
+
+    return 0;
+
+}
+
