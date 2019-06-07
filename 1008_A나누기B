@@ -1,0 +1,12 @@
+#include <iostream>
+
+int main()
+{
+    double a,b;
+    scanf("%lf %lf",&a,&b);
+    double res = a/b;
+    printf("%.9lf\n",res);
+    return 0;
+}
+
+
