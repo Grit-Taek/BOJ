@@ -1,0 +1,77 @@
+#include <iostream>
+
+#include <algorithm>
+
+using namespace std;
+
+int main()
+
+{
+    
+    
+    
+    int dp[1000001];
+    
+    int n;
+    
+    scanf("%d", &n);
+    
+    dp[0] = 0;
+    
+    dp[1] = 0;
+    
+    int ans = 0;
+    
+    int fi = 0;
+    
+    for(int i=2;i<=n;i++)
+        
+    {
+        
+        if(i%3 == 0)
+            
+        {
+            
+            dp[i] = dp[i/3] + 1;
+            
+            ans = dp[i-1] + 1;
+            
+            fi = min(ans,dp[i]);
+            
+            dp[i] = fi;
+            
+        }
+        
+        else if(i%2 == 0)
+            
+        {
+            
+            dp[i] = dp[i/2] + 1;
+            
+            ans = dp[i-1] + 1;
+            
+            fi = min(ans,dp[i]);
+            
+            dp[i] = fi;
+            
+        }
+        
+        else{
+            
+            fi = dp[i-1] + 1;
+            dp[i] = fi;
+        
+        }
+    }
+    
+    
+    printf("%d", fi);
+    
+    
+    return 0;
+    
+}
+
+
+
+
