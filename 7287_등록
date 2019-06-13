@@ -1,0 +1,13 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string str = "new_ht0504";
+    cout << 30 << endl;
+    cout << str;
+    return 0;
+}
+
+
