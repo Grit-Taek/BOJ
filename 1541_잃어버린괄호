@@ -1,0 +1,22 @@
+#include <iostream>
+
+int main()
+{
+
+    int t;
+    bool ch = false;
+    int res = 0;
+    while(scanf("%d",&t) != EOF)
+    {
+        if(t<0)
+            ch = true;
+        if(ch)
+            res-=abs(t);
+        else
+            res+=abs(t);
+
+    }
+
+    printf("%d",res);
+    return 0;
+}
