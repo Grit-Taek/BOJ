@@ -1,0 +1,52 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+
+int INF = 987654321;
+int arr[101][101];
+int res[101];
+int main() {
+    int userNum, relationNum;
+    scanf("%d %d", &userNum, &relationNum);
+
+    for (int i = 0; i < relationNum; i++) {
+        int a, b;
+        scanf("%d %d", &a, &b);
+        arr[a][b] = arr[b][a] = 1;
+
+    }
+
+    for (int k = 1; k <= userNum; k++) {
+        for (int i = 1; i <= userNum; i++) {
+            for (int j = 1; j <= userNum; j++) {
+                if (i == j) continue;
+
+                else if(arr[i][k] && arr[k][j]) {
+                    if (arr[i][j] == 0)
+                        arr[i][j] = arr[i][k] + arr[k][j];
+                    else
+                        arr[i][j] = min(arr[i][j], arr[i][k] + arr[k][j]);
+                }
+
+            }
+
+        }
+    }
+    int result = INF;
+    int person;
+    for (int i = 1; i <= userNum; i++) {
+        int sum = 0;
+        for (int j = 1; j <= userNum; j++)
+            sum += arr[i][j];
+        if (result > sum)
+        {
+            result = sum;
+            person = i;
+        }
+    }
+
+    printf("%d", person);
+    return 0;
+}
