@@ -1,0 +1,87 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+int dx[4] = { -1,0,1,0 };
+int dy[4] = { 0,1,0,-1 };
+int n, m;
+int map[8][8];
+int copyMap[8][8];
+
+vector<pair<int,int>> v;
+void dfs(int x, int y)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		int newX = dx[i] + x;
+		int newY = dy[i] + y;
+		if (newX>=0 && newX < n && newY >= 0 && newY<m)
+		{
+			if (copyMap[newX][newY] == 0)
+			{
+				copyMap[newX][newY] = 2;
+				dfs(newX, newY);
+			}
+		}
+	}
+}
+
+int main()
+{
+	cin >> n >> m;
+	
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cin >> map[i][j];
+			copyMap[i][j] = map[i][j];
+			if (!map[i][j]) v.push_back(make_pair(i, j));
+		}
+	}
+	int MAX = 0;
+	for (int i = 0; i < v.size() - 2; i++)
+	{
+		for (int j = i + 1; j < v.size() - 1; j++)
+		{
+			for (int k = j + 1; k < v.size(); k++)
+			{
+				pair<int,int> one = v[i];
+				pair<int,int> two = v[j];
+				pair<int,int> three = v[k];
+
+				for (int i = 0; i < n; i++)
+				{
+					for (int j = 0; j < m; j++)
+						copyMap[i][j] = map[i][j];
+				}
+				copyMap[one.first][one.second] = 1;
+				copyMap[two.first][two.second] = 1;
+				copyMap[three.first][three.second] = 1;
+
+				
+				for (int i = 0; i < n; i++)
+				{
+					for (int j = 0; j < m; j++)
+					{
+						if (copyMap[i][j] == 2)
+							dfs(i, j);
+					}
+				}
+				int cnt = 0;
+				for (int i = 0; i < n; i++)
+				{
+					for (int j = 0; j < m; j++)
+					{
+						if (copyMap[i][j] == 0)
+							cnt++;
+					}
+				}
+				MAX = max(MAX, cnt);
+			}
+		}
+	}
+	cout << MAX << endl;
+	return 0;
+}
