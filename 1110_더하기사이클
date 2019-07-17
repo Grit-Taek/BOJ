@@ -1,0 +1,53 @@
+#include <iostream>
+
+int cnt = 0;
+int res = 0;
+int a, b, c, d,vn;
+int cycle(int n,int vn)
+{
+	cnt += 1;
+	a = vn / 10;
+	b = vn % 10;
+	res = a + b;
+	c = res % 10;
+	d = b * 10 + c;
+	if (n == d) return cnt;
+	else return cycle(n,d);
+	
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	vn = n;
+	cnt = cycle(n,vn);
+	printf("%d", cnt);
+	return 0;
+
+#include <iostream>
+
+int cnt = 0;
+int res = 0;
+int a, b, c, d,vn;
+int cycle(int n,int vn)
+{
+	cnt += 1;
+	a = vn / 10;
+	b = vn % 10;
+	res = a + b;
+	c = res % 10;
+	d = b * 10 + c;
+	if (n == d) return cnt;
+	else return cycle(n,d);
+	
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	vn = n;
+	cnt = cycle(n,vn);
+	printf("%d", cnt);
+	return 0;
+
+}
