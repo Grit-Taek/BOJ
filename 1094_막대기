@@ -1,0 +1,82 @@
+#include <iostream>
+
+int main()
+{
+	int x;
+	scanf("%d", &x);
+	int cnt = 0;
+	if (x % 2 == 1)
+	{ 
+		x -= 1;
+		cnt++;
+		while (x != 0)
+		{
+			if (x >= 16 && x < 32)
+			{
+				x -= 16;
+				cnt++;
+			}
+			else if (x >= 32)
+			{
+				x -= 32;
+				cnt++;
+			}
+			else if (x >= 8 && x < 16)
+			{
+				x -= 8;
+				cnt++;
+			}
+			else if (x >= 4 && x < 8)
+			{
+				x -= 4;
+				cnt++;
+			}
+			else
+			{
+				x -= 2;
+				cnt++;
+			}
+		
+		}
+	}
+	else
+	{
+		while (x != 0)
+		{
+			if (x >= 16 && x < 32)
+			{
+				x -= 16;
+				cnt++;
+			}
+			else if (x == 64)
+			{
+				x -= 64;
+				cnt++;
+			}
+			else if (x >= 32)
+			{
+				x -= 32;
+				cnt++;
+			}
+			else if (x >= 8 && x < 16)
+			{
+				x -= 8;
+				cnt++;
+			}
+			else if (x >= 4 && x < 8)
+			{
+				x -= 4;
+				cnt++;
+			}
+			
+			else
+			{
+				x -= 2;
+				cnt++;
+			}
+
+		}
+	}
+	printf("%d", cnt);
+	return 0;
+}
