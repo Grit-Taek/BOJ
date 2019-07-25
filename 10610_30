@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+bool compare(char a, char b)
+{
+	return a > b;
+}
+int main()
+{
+	string str;
+	bool s=false;
+	cin >> str;
+	int a = 0;
+	for (int i = 0; i < str.size(); i++)
+	{
+		a += str[i] - '0';
+		if (str[i] - '0' == 0)
+			s = true;
+	}
+
+	if (a % 3 == 0 && s)
+	{
+		sort(str.begin(), str.end(), compare);
+		cout << str;
+	}
+	else
+		cout << "-1";
+
+	return 0;
+}
