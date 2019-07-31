@@ -1,0 +1,80 @@
+#include <iostream>
+
+using namespace std;
+int dx[4] = { -1,0,1,0 };
+int dy[4] = { 0,1,0,-1 };
+
+char map[100][100];
+char map2[100][100];
+bool visited[100][100];
+bool visited2[100][100];
+int cnt,cnt2 = 0;
+int n = 0;
+void dfs(int x, int y, char arr[100][100], bool visit[100][100])
+{
+	char c = arr[x][y];
+	for (int i = 0; i < 4; i++)
+	{
+		int nx = x + dx[i];
+		int ny = y + dy[i];
+		if (nx <0 || ny<0 || nx> n - 1 || ny> n - 1)
+			continue;
+		if (visit[nx][ny] == 0 && arr[nx][ny] == c)
+		{
+			visit[nx][ny] = true;
+			dfs(nx, ny, arr,visit);
+			
+		}
+
+	}
+}
+int main()
+{
+
+	cin >> n;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cin >> map[i][j];
+			map2[i][j] = map[i][j];
+		}
+	}
+	
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if(map2[i][j]=='R')
+				map2[i][j] = 'G';
+		}
+	}
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (visited[i][j]==0)
+			{
+				dfs(i, j,map,visited);
+				cnt++;
+			}
+		}
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (visited2[i][j] == 0)
+			{
+				dfs(i, j, map2,visited2);
+				cnt2++;
+			}
+		}
+	}
+
+	cout << cnt <<' '<< cnt2;
+	
+	return 0;
+
+}
