@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+int main()
+{
+	string s;
+	cin >> s;
+	int a = s.size();
+	int i = 0;
+	int joi = 0;
+	int ioi = 0;
+	while (a > 0)
+	{
+		if (s[i] == 'J' && s[i + 1] == 'O' && s[i + 2] == 'I') joi++;
+
+		if (s[i] == 'I' && s[i + 1] == 'O' && s[i + 2] == 'I') ioi++;
+		a--;
+		i++;
+	}
+	cout << joi << endl << ioi;
+	return 0;
+}
