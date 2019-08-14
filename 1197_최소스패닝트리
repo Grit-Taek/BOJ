@@ -1,0 +1,69 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+
+int set[10001];
+
+int getParent(int x)
+{
+	if (set[x] == x) return x;
+	return set[x] = getParent(set[x]);
+}
+
+void unionParent(int a, int b)
+{
+	a = getParent(a);
+	b = getParent(b);
+	if (a > b) set[a] = b;
+	else set[b] = a;
+}
+class Edge
+{
+public:
+	int node[2];
+	int distance;
+	Edge(int a, int b, int distance)
+	{
+		this->node[0] = a;
+		this->node[1] = b;
+		this->distance = distance;
+	}
+
+	bool operator<(Edge &edge)
+	{
+		return this->distance < edge.distance;
+	}
+};
+
+
+int main()
+{
+
+	for (int i = 1; i < 10001; i++)
+		set[i] = i;
+	vector<Edge> ve;
+	int v, e;
+	scanf("%d %d", &v, &e);
+	for (int i = 0; i < e; i++)
+	{
+		int a, b, c;
+		scanf("%d %d %d", &a, &b, &c);
+		ve.push_back(Edge(a,b,c));
+	}
+
+	sort(ve.begin(), ve.end());
+	int sum = 0;
+	for (int i = 0; i < ve.size(); i++)
+	{
+		if (getParent(ve[i].node[0]) != getParent(ve[i].node[1]))
+		{
+			sum += ve[i].distance;
+			unionParent(ve[i].node[0], ve[i].node[1]);
+		}
+	}
+
+	printf("%d", sum);
+	return 0;
+}
