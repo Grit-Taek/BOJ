@@ -1,0 +1,67 @@
+#include <iostream>
+
+using namespace std;
+
+
+int dp[30][30];
+int main()
+{
+	int tc = 0;
+	scanf("%d", &tc);
+	
+	for (int east = 1; east < 30; east++)
+	{
+		for (int west = 1; west <= east; west++)
+		{
+			if (east == west)
+				dp[east][west] = 1;
+			else if (west == 1)
+				dp[east][west] = east;
+			else
+				dp[east][west] = dp[east - 1][west - 1] + dp[east - 1][west];
+
+		}
+	}
+
+	for (int i = 0; i < tc; i++)
+	{
+		int a, b;
+		scanf("%d %d", &a, &b);
+		printf("%d\n", dp[b][a]);
+	}
+
+	return 0;
+#include <iostream>
+
+using namespace std;
+
+
+int dp[30][30];
+int main()
+{
+	int tc = 0;
+	scanf("%d", &tc);
+	
+	for (int east = 1; east < 30; east++)
+	{
+		for (int west = 1; west <= east; west++)
+		{
+			if (east == west)
+				dp[east][west] = 1;
+			else if (west == 1)
+				dp[east][west] = east;
+			else
+				dp[east][west] = dp[east - 1][west - 1] + dp[east - 1][west];
+
+		}
+	}
+
+	for (int i = 0; i < tc; i++)
+	{
+		int a, b;
+		scanf("%d %d", &a, &b);
+		printf("%d\n", dp[b][a]);
+	}
+
+	return 0;
+}
