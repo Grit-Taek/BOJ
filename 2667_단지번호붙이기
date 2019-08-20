@@ -1,0 +1,62 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int dx[4] = { -1,0,0,1 };
+int dy[4] = { 0,-1,1,0 };
+int map[25][25];
+int ans[25][25];
+int n;
+bool visited[25][25];
+int cnt = 0;
+int num[1000];
+void dfs(int x, int y)
+{
+	visited[x][y] = true;
+	num[cnt]++;
+	for (int i = 0; i < 4; i++)
+	{
+		int hx = x + dx[i];
+		int hy = y + dy[i];
+
+		if (hx >= 0 && hy >= 0 && hx < n && hy < n)
+		{
+			if (map[hx][hy] && !visited[hx][hy])
+			{
+				dfs(hx, hy);
+			}
+		}
+	}
+}
+int main()
+{
+	scanf("%d", &n);
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			scanf("%1d", &map[i][j]);
+		}
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (!visited[i][j] && map[i][j])
+			{
+				dfs(i, j);
+				cnt++;
+			}
+			
+		}
+	}
+	printf("%d\n", cnt);
+
+	sort(num, num + cnt);
+
+	for (int i = 0; i < cnt; i++)
+		printf("%d\n", num[i]);
+	return 0;
+}
