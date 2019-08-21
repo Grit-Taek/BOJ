@@ -1,0 +1,72 @@
+#include <iostream>
+#include <algorithm>
+#include <memory.h>
+
+
+using namespace std;
+
+#define INF 987654321
+
+int dx[4] = { -1,1,0,0 };
+int dy[4] = { 0,0,-1,1 };
+int n;
+int arr[100][100];
+bool visited[100][100];
+int cnt = 0;
+int maxKey = 0;
+int minKey = INF;
+
+
+void dfs(int x, int y, int key)
+{
+	if (x >= n || y >= n || x < 0 || y < 0) return;
+	if (visited[x][y] || arr[x][y] <= key) return;
+
+	visited[x][y] = true;
+
+	for (int i = 0; i < 4; i++)
+	{
+		int nx = x + dx[i];
+		int ny = y + dy[i];
+	
+		dfs(nx, ny, key);
+	}
+}
+
+
+int main()
+{
+	scanf("%d", &n);
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			scanf("%d", &arr[i][j]);
+			maxKey = max(maxKey, arr[i][j]);
+			minKey = min(minKey, arr[i][j]);
+		}
+	}
+
+	int res = 1;
+	for(int key=minKey; key < maxKey; key++)
+	{
+		memset(visited, 0, sizeof(visited));
+		cnt = 0;
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				if (!visited[i][j] && arr[i][j] > key)
+				{
+					dfs(i, j, key);
+					cnt++;
+				}
+			}
+		}
+		res = max(res, cnt);
+
+	}
+
+	printf("%d", res);
+	return 0;
+}
