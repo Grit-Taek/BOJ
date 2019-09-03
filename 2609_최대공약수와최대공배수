@@ -1,0 +1,39 @@
+#include <iostream>
+
+
+
+void swap(int &a, int &b)
+{
+	int tmp = a;
+	a = b;
+	b = tmp;
+}
+int max(int a, int b)
+{
+	int tmp = 0;
+	if (a < b) swap(a, b);
+	while (b != 0)
+	{
+		tmp = a % b;
+		a = b;
+		b = tmp;
+	}
+
+	return a;
+
+}
+
+void min(int n, int m, int res)
+{
+	printf("%d", n * m / res);
+}
+
+int main()
+{
+	int n, m;
+	scanf("%d %d", &n, &m);
+	int res = max(n, m);
+	printf("%d\n", res);
+	min(n, m, res);
+	return 0;
+}
