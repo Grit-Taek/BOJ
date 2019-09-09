@@ -1,0 +1,11 @@
+#include <iostream>
+
+int main()
+{
+    int n = 1946;
+    int a=0;
+    scanf("%d",&a);
+    int res = a-1946;
+    printf("%d",res);
+    return 0;
+}
