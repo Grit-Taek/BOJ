@@ -1,0 +1,15 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+int main()
+{
+    int x,y,w,h;
+    scanf("%d %d %d %d", &x,&y,&w,&h);
+    int a = w-x;
+    int b = h-y;
+    int res = min(min(x,y),min(a,b));
+    printf("%d", res);
+
+    return 0;
+}
