@@ -1,0 +1,61 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+typedef pair<string, int> p;
+vector<p> v;
+int main()
+{
+	int gameNum, knowPlayer, winNum, loseNum, endNum;
+	cin >> gameNum >> knowPlayer >> winNum >> loseNum >> endNum;
+	int res = 0;
+	for (int i = 0; i < knowPlayer; i++)
+	{
+		string str;
+		char c;
+		int a=0;
+		cin >> str >> c;
+		if (c == 'W')
+			a = winNum;
+		else
+			a = -loseNum;
+		v.push_back(make_pair(str, a));
+	}
+	for (int i = 0; i < gameNum; i++)
+	{
+		string str2;
+		cin >> str2;
+		int tmp = 0;
+		for (int j = 0; j < knowPlayer; j++)
+		{
+			if (str2 == v[j].first)
+			{
+			
+				res += v[j].second;
+				if (res < 0)
+					res -= v[j].second;
+				tmp = 1;
+				break;
+			
+			}
+	
+		}
+		if(tmp == 0)
+		{
+			res -= loseNum;
+			if (res < 0)
+				res = 0;
+		}
+		if (res >= endNum)
+		{
+			cout << "I AM NOT IRONMAN!!";
+			break;
+		}
+	
+	}
+	if (res < endNum)
+		cout << "I AM IRONMAN!!";
+
+	return 0;
+}
