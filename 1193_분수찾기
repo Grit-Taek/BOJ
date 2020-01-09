@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n = 0 , cnt = 0 , a = 0 , b = 0;
+    cin >> n;
+
+    if(n == 0){
+        cout << a << "/" << b;
+        return 0;
+    }
+    while(n > 0)
+    {
+        cnt += 1;
+        n -= cnt;
+    }
+
+    if(cnt % 2 == 0)
+    {
+        a = cnt + n;
+        b = 1 + (-1 * n) ;
+    }
+    else
+    {
+        a = 1 + (-1 * n);
+        b = cnt + n;
+    }
+
+    cout << a << "/" << b;
+}
