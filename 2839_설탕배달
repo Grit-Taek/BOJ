@@ -1,0 +1,22 @@
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n = 0;
+    scanf("%d", &n);
+    int cnt = n/5;
+    if(n % 5 != 0)
+    {
+        for(;cnt>=0;cnt--)
+        {
+            if((n-cnt*5) % 3 ==0)
+            {
+                cnt +=(n-cnt*5) / 3;
+                break;
+            }
+        }
+    }
+
+    printf("%d", cnt);
+}
