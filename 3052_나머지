@@ -1,0 +1,26 @@
+
+#include <iostream>
+
+int arr[42];
+int main() {
+
+    int cnt =  0;
+    for(int i=0;i<10;i++)
+    {
+        int n;
+        scanf("%d" , &n);
+        int remainder = n % 42;
+        arr[remainder] = 1;
+    }
+
+    for(int i=0;i<42;i++)
+    {
+        if(arr[i] == 1)
+            cnt++;
+    }
+
+    printf("%d", cnt);
+    
+    return 0;
+
+}
