@@ -1,0 +1,42 @@
+#include <iostream>
+
+using namespace std;
+
+int arr[50];
+
+int main()
+{
+    for(int i=0;i<50;i++)
+    {
+        int a;
+        scanf("%d", &a);
+        arr[i] = a;
+    }
+    int myNum;
+    scanf("%d", &myNum);
+
+    int cnt = 1;
+    for(int i=0;i<50;i++)
+    {
+        if(myNum < arr[i])
+            cnt++;
+        else
+            break;
+    }
+    if(cnt <= 5 && cnt >= 1)
+        printf("A+");
+    else if(cnt >=6  && cnt <16)
+        printf("A0");
+    else if(cnt >= 16 && cnt < 31)
+        printf("B+");
+    else if(cnt >= 31 && cnt < 36)
+        printf("B0");
+    else if(cnt >= 36  && cnt < 46)
+        printf("C+");
+    else if(cnt >= 46  && cnt < 49)
+        printf("C0");
+    else
+        printf("F");
+
+    return 0;
+}
