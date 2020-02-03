@@ -1,0 +1,26 @@
+#include <iostream>
+
+using namespace std;
+
+
+int main()
+{
+    int tc;
+    scanf("%d", &tc);
+    for(int i=0;i<tc;i++)
+    {
+        int n,m;
+        scanf("%d %d", &n,&m);
+        if(n <= 11 || m < 4)
+        {
+            printf("-1\n");
+        }
+        else {
+            int res = 11 * m;
+            printf("%d\n", res + 4);
+        }
+    }
+
+    return 0;
+
+}
