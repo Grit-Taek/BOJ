@@ -1,0 +1,63 @@
+#include <cstdio>
+#include <vector>
+using namespace std;
+
+char arr[100][100];
+vector<int> v;
+
+int main()
+{
+    int n,m;
+    scanf("%d %d", &n,&m);
+    for(int i=0;i<n;i++)
+            scanf("%s", arr[i]);
+    for(int i=0;i<n;i++)
+    {
+        int cnt = 0;
+        for(int j = 0;j<m;j++)
+        {
+            if(arr[i][j] == '#')
+                cnt++;
+        }
+        if(cnt != 0)
+            v.push_back(cnt);
+    }
+    auto iter = v.begin();
+    int a = *iter;
+    iter = v.end()-1;
+    int b = *iter;
+    if(a > b) {
+        printf("DOWN\n");
+        return 0;
+    }
+    else if(a < b) {
+        printf("UP\n");
+        return 0;
+    }
+    v.clear();
+    for(int i=0;i<m;i++)
+    {
+        int cnt = 0;
+        for(int j = 0;j<n;j++)
+        {
+            if(arr[j][i] == '#')
+                cnt++;
+        }
+        if(cnt !=0)
+            v.push_back(cnt);
+    }
+    auto iter2 = v.begin();
+    int c= *iter2;
+    iter2 = v.end()-1;
+    int d = *iter2;
+    if(c > d) {
+        printf("RIGHT\n");
+        return 0;
+    }
+    else if(c < d) {
+        printf("LEFT\n");
+        return 0;
+    }
+
+    return 0;
+}
