@@ -1,0 +1,43 @@
+#include <cstdio>
+#include <queue>
+using namespace std;
+char arr2[1000];
+deque<char> q;
+
+int main()
+{
+    int tc;
+    scanf("%d", &tc);
+    getchar();
+    for(int i=0;i<tc;i++) {
+        int n;
+        scanf("%d", &n);
+        getchar();
+        for(int j=0;j<n;j++) {
+            scanf("%c", &arr2[j]);
+            getchar();
+        }
+        q.push_back(arr2[0]);
+        int order = 1;
+        while(order<n)
+        {
+            if(q.front() - 'A' >= arr2[order] - 'A') {
+                q.push_front(arr2[order]);
+            }
+            else {
+                q.push_back(arr2[order]);
+            }
+
+            order++;
+        }
+
+        auto iter = q.begin();
+        for(int j=0;j<n;j++) {
+            printf("%c", *(iter + j));
+        }
+
+        q.clear();
+        printf("\n");
+    }
+    return 0;
+}
