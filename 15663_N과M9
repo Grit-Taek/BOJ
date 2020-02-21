@@ -1,0 +1,47 @@
+#include <cstdio>
+#include <algorithm>
+
+using namespace std;
+
+int n,m;
+int arr[9];
+int res[9];
+bool checked[9];
+
+void nm(int cnt)
+{
+
+    if( cnt == m)
+    {
+        for(int i=0;i<m;++i)
+        {
+            printf("%d ",res[i]);
+        }
+        printf("\n");
+        return ;
+    }
+
+    bool used[10001] = {false,};
+    for(int i = 0 ; i<n;++i)
+    {
+        if(!checked[i] && !used[arr[i]]) {
+            checked[i] = true;
+            res[cnt] = arr[i];
+            used[arr[i]] = true;
+            nm(cnt + 1);
+            checked[i] = false;
+            }
+
+    }
+
+}
+int main()
+{
+    scanf("%d %d", &n,&m);
+    for(int i=0;i<n;++i)
+        scanf("%d" , &arr[i]);
+    sort(arr , arr + n);
+    nm(0);
+    return 0;
+
+}
