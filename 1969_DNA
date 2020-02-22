@@ -1,0 +1,55 @@
+#include <cstdio>
+
+char arr[1001][51];
+int dna[4];
+char dna2[4]={'A','C','G','T'};
+int main()
+{
+    int n,m;
+    scanf("%d %d", &n,&m);
+    for(int i=0;i<n;i++)
+        scanf("%s", arr[i]);
+    int cnt = 0;
+    for(int i=0;i<m;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            if(arr[j][i] == 'A')
+                dna[0]++;
+            else if(arr[j][i] == 'C')
+                dna[1]++;
+            else if(arr[j][i] == 'G')
+                dna[2]++;
+            else
+                dna[3]++;
+        }
+        int res = 0;
+        int idx = 0;
+        for(int j=0;j<4;j++)
+        {
+            if(res < dna[j]) {
+                res = dna[j];
+                idx = j;
+            }
+            else if(res == dna[j])
+            {
+                idx = (idx < j)? idx : j;
+            }
+        }
+
+        printf("%c", dna2[idx]);
+
+        for(int k=0;k<4;k++)
+            dna[k] = 0;
+
+        for(int j=0;j<n;j++)
+        {
+            if(dna2[idx] !=arr[j][i])
+                cnt++;
+        }
+    }
+    printf("\n");
+    printf("%d" , cnt);
+    return 0;
+
+}
