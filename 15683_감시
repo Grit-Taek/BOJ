@@ -1,0 +1,179 @@
+#include <cstdio>
+#include <vector>
+#include <algorithm>
+using namespace std;
+// dir : 0 = 오른쪽, 1 = 아래, 2 = 왼쪽, 3 = 위
+// 1번은 4가지, 2번은 2가지, 3번은 4가지, 4번은 4가지, 5번은 1가지 경우
+int n,m;
+int cctvSize = 0;
+int ans = 987654321;
+struct info {
+    int x;
+    int y;
+    int dir;
+    int cctvNum;
+
+};
+vector<vector<int> > map;
+vector<vector<int> > temp;
+vector<info> cctv;
+void checkRight(int x, int y)
+{
+    for(int i=y;i<m;i++)
+    {
+        if(temp[x][i] == 6) break;
+        if(temp[x][i] == 0) temp[x][i] = -1;
+    }
+
+}
+void checkDown(int x, int y)
+{
+    for(int i=x;i<n;i++)
+    {
+        if(temp[i][y] == 6) break;
+        if(temp[i][y] == 0) temp[i][y] = -1;
+    }
+}
+void checkLeft(int x, int y)
+{
+    for(int i=y;i>=0;i--)
+    {
+        if(temp[x][i] == 6) break;
+        if(temp[x][i] == 0) temp[x][i] = -1;
+    }
+}
+void checkUp(int x, int y)
+{
+    for(int i=x;i>=0;i--)
+    {
+        if(temp[i][y] == 6) break;
+        if(temp[i][y] == 0) temp[i][y] = -1;
+    }
+}
+void test(vector<info> &cctv){
+
+    temp = map;
+    for(int i=0;i<cctvSize;i++)
+    {
+        if(cctv[i].cctvNum == 1) {
+            if(cctv[i].dir == 0)
+                checkRight(cctv[i].x , cctv[i].y);
+            if(cctv[i].dir == 1)
+                checkDown(cctv[i].x , cctv[i].y);
+            if(cctv[i].dir == 2)
+                checkLeft(cctv[i].x , cctv[i].y);
+            if(cctv[i].dir == 3)
+                checkUp(cctv[i].x , cctv[i].y);
+        }
+        if(cctv[i].cctvNum == 2) {
+            if(cctv[i].dir == 0 || cctv[i].dir == 2) {
+                checkLeft(cctv[i].x, cctv[i].y);
+                checkRight(cctv[i].x, cctv[i].y);
+            }
+            if(cctv[i].dir == 1 || cctv[i].dir == 3){
+                checkUp(cctv[i].x , cctv[i].y);
+                checkDown(cctv[i].x , cctv[i].y);
+                }
+        }
+        if(cctv[i].cctvNum == 3) {
+            if(cctv[i].dir == 0) {
+                checkRight(cctv[i].x, cctv[i].y);
+                checkUp(cctv[i].x, cctv[i].y);
+            }
+            if(cctv[i].dir == 1) {
+                checkDown(cctv[i].x, cctv[i].y);
+                checkRight(cctv[i].x, cctv[i].y);
+            }
+            if(cctv[i].dir == 2) {
+                checkLeft(cctv[i].x, cctv[i].y);
+                checkDown(cctv[i].x, cctv[i].y);
+            }
+            if(cctv[i].dir == 3) {
+                checkLeft(cctv[i].x, cctv[i].y);
+                checkUp(cctv[i].x , cctv[i].y);
+            }
+        }
+        if(cctv[i].cctvNum == 4) {
+            if(cctv[i].dir == 0) {
+                checkRight(cctv[i].x, cctv[i].y);
+                checkUp(cctv[i].x, cctv[i].y);
+                checkLeft(cctv[i].x, cctv[i].y);
+            }
+            if(cctv[i].dir == 1) {
+                checkDown(cctv[i].x, cctv[i].y);
+                checkRight(cctv[i].x, cctv[i].y);
+                checkUp(cctv[i].x, cctv[i].y);
+            }
+            if(cctv[i].dir == 2) {
+                checkRight(cctv[i].x, cctv[i].y);
+                checkLeft(cctv[i].x, cctv[i].y);
+                checkDown(cctv[i].x, cctv[i].y);
+            }
+            if(cctv[i].dir == 3) {
+                checkDown(cctv[i].x, cctv[i].y);
+                checkLeft(cctv[i].x, cctv[i].y);
+                checkUp(cctv[i].x , cctv[i].y);
+            }
+        }
+        if(cctv[i].cctvNum == 5) {
+                checkRight(cctv[i].x, cctv[i].y);
+                checkLeft(cctv[i].x, cctv[i].y);
+                checkDown(cctv[i].x, cctv[i].y);
+                checkUp(cctv[i].x , cctv[i].y);
+        }
+
+    }
+
+    int cnt = 0;
+    for(int i=0;i<n;i++) {
+        for (int j = 0; j < m; j++) {
+            if (temp[i][j] == 0) cnt += 1;
+        }
+    }
+    ans = min(ans, cnt);
+
+
+}
+
+void dfs(int idx, vector<info> &cctv)
+{
+    if(idx == cctvSize)
+    {
+        test(cctv);
+        return;
+    }
+
+    cctv[idx].dir = 0;
+    dfs(idx+1 , cctv);
+
+    cctv[idx].dir = 1;
+    dfs(idx+1 , cctv);
+
+    cctv[idx].dir = 2;
+    dfs(idx+1 , cctv);
+
+    cctv[idx].dir = 3;
+    dfs(idx+1 , cctv);
+}
+
+int main()
+{
+    scanf("%d %d", &n,&m);
+    for(int i=0;i<n;i++)
+    {
+        map.push_back(vector<int>());
+        for(int j=0;j<m;j++)
+        {
+            int a;
+            scanf("%d", &a);
+            if(a != 0 && a != 6)
+                cctv.push_back({i,j,0,a});
+            map[i].push_back(a);
+        }
+    }
+
+    cctvSize = cctv.size();
+    dfs(0 , cctv);
+    printf("%d", ans);
+    return 0;
+}
