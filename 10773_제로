@@ -1,0 +1,42 @@
+#include <cstdio>
+#include <vector>
+
+using namespace std;
+
+vector<int> v;
+int main()
+{
+    int n;
+    scanf("%d", &n);
+    int res = 0;
+    for(int i=0;i<n;i++)
+    {
+        int a;
+        scanf("%d", &a);
+        v.push_back(a);
+    }
+    auto iter = v.begin();
+    for(int i=1;i<n;i++)
+    {
+        if(*(iter+i) == 0) {
+            int k = 1;
+            while (true) {
+                if (*(iter + i - k) != 0) {
+                    *(iter + i - k) = 0;
+                    break;
+                } else
+                    ++k;
+            }
+        }
+        else
+            continue;
+    }
+    for(int i=0;i<n;i++)
+    {
+        res += *(iter+i);
+    }
+
+    printf("%d", res);
+    return 0;
+
+}
