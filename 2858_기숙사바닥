@@ -1,0 +1,24 @@
+#include <cstdio>
+
+int main()
+{
+    int red, brown;
+    scanf("%d %d", &red, &brown);
+    int horizon = 0 , vertical = 0;
+    int sum = red + brown;
+    for(int i=1;i<sum;i++)
+    {
+        for(int j=1;j<sum;j++)
+        {
+            if(i * j == sum && i + j == red/2 + 2)
+            {
+                horizon = (i > j)? i : j;
+                vertical = (i > j)? j : i;
+                printf("%d %d", horizon , vertical);
+                return 0;
+            }
+        }
+    }
+
+    return 0;
+}
