@@ -1,0 +1,31 @@
+#include <cstdio>
+
+int main()
+{
+    int n;
+    scanf("%d", &n);
+    int cnt = 0;
+    for(int i=n;i>0;--i)
+    {
+        if(i < 10)
+            cnt += 1;
+        else if(i < 1e2)
+            cnt += 2;
+        else if(i < 1e3)
+            cnt += 3;
+        else if(i < 1e4)
+            cnt += 4;
+        else if(i < 1e5)
+            cnt += 5;
+        else if(i < 1e6)
+            cnt += 6;
+        else if(i < 1e7)
+            cnt += 7;
+        else if(i < 1e8)
+            cnt += 8;
+        else
+            cnt += 9;
+    }
+    printf("%d", cnt);
+    return 0;
+}
