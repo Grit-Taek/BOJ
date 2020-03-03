@@ -1,0 +1,55 @@
+#include <cstdio>
+#include <queue>
+
+using namespace std;
+char arr[10];
+queue<int> q;
+int main()
+{
+    int n;
+    scanf("%d", &n);
+
+    for(int i=0;i<n;++i)
+    {
+        int num = 0;
+        scanf("%s", arr);
+
+        if(arr[3] == 'h') {
+            scanf("%d", &num);
+            q.push(num);
+        }
+        else if(arr[0] == 'f') {
+            if (q.empty()) {
+                printf("-1\n");
+                continue;
+            }
+            printf("%d\n", q.front());
+        }
+        else if(arr[0] == 'b') {
+            if (q.empty()) {
+                printf("-1\n");
+                continue;
+            }
+            printf("%d\n", q.back());
+        }
+        else if(arr[0] == 's')
+            printf("%d\n", q.size());
+        else if(arr[0] == 'e')
+        {
+            if(q.empty())
+                printf("1\n");
+            else
+                printf("0\n");
+        }
+        else {
+            if (q.empty()) {
+                printf("-1\n");
+                continue;
+            }
+            printf("%d\n", q.front());
+            q.pop();
+        }
+    }
+    return 0;
+
+}
