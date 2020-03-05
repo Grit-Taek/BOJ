@@ -1,0 +1,45 @@
+
+#include <cstdio>
+#include <string>
+using namespace std;
+char num1[1000000];
+char num2[1000000];
+char num1max[1000000];
+char num2max[1000000];
+char num1min[1000000];
+char num2min[1000000];
+
+int main()
+{
+    scanf("%s %s", num1,num2);
+    for(int i=0;i<1000000;i++)
+    {
+        if(num1[i] == '5')
+            num1max[i] = '6';
+        else
+            num1max[i] = num1[i];
+
+        if(num2[i] == '5')
+            num2max[i] = '6';
+        else
+            num2max[i] = num2[i];
+
+        if(num1[i] == '6')
+            num1min[i] = '5';
+        else
+            num1min[i] = num1[i];
+
+        if(num2[i] == '6')
+            num2min[i] = '5';
+        else
+            num2min[i] = num2[i];
+    }
+
+    int num = stoi(num1max);
+    int num10 = stoi(num2max);
+    int num11 = stoi(num1min);
+    int num12 = stoi(num2min);
+
+    printf("%d %d"  , num11+num12 , num + num10);
+    return 0;
+}
