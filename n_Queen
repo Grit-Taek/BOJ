@@ -1,0 +1,47 @@
+#include <cstdio>
+
+using namespace std;
+int n , ans = 0;
+bool map[15][15];
+bool col[100];
+bool rightDiagonal[100];
+bool leftDiagonal[100];
+
+bool chk(int x, int y) {
+    if(col[y]) return false;
+    if(rightDiagonal[x+y]) return false;
+    if(leftDiagonal[x-y+n]) return false;
+
+    return true;
+}
+void dfs(int x)
+{
+    if(x == n)
+    {
+        ans += 1;
+        return;
+    }
+
+    for(int i= 0 ; i<n;i++)
+    {
+        if(chk(x , i)) {
+            map[x][i] = true;
+            col[i] = true;
+            rightDiagonal[x+i] = true;
+            leftDiagonal[x-i+n] = true;
+            dfs(x+1);
+            map[x][i] = false;
+            col[i] = false;
+            rightDiagonal[x+i] = false;
+            leftDiagonal[x-i+n] = false;
+        }
+
+    }
+
+}
+int main()
+{
+    scanf("%d", &n);
+    dfs(0);
+    printf("%d", ans);
+}
