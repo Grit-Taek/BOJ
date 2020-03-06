@@ -1,0 +1,69 @@
+#include <cstdio>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int arr[100][100];
+int dx[4] = {0,0,1,-1};
+int dy[4] = {-1,1,0,0};
+bool visited[100][100];
+int cnt = 0 , ans = 0;
+int m,n,k;
+vector<int> res;
+
+void fill(int a, int b, int c, int d)
+{
+    for(int i=b;i<=d-1;i++)
+    {
+        for(int j=a;j<=c-1;j++)
+            arr[i][j] = 1;
+    }
+}
+void dfs(int x , int y)
+{
+    cnt += 1;
+    for(int i=0;i<4;i++) {
+        int px = x + dx[i];
+        int py = y + dy[i];
+        if (px < 0 || py < 0 || px >= m || py >= n)
+            continue;
+        else {
+            if (!visited[px][py] && !arr[px][py]) {
+                visited[px][py] = true;
+                dfs(px, py);
+            }
+        }
+    }
+
+}
+int main()
+{
+    scanf("%d %d %d", &m,&n,&k);
+    for(int i=0;i<k;i++)
+    {
+        int a,b,c,d;
+        scanf("%d %d %d %d", &a,&b,&c,&d);
+        fill(a,b,c,d);
+    }
+    for(int i=0;i<m;i++) {
+        for (int j = 0; j < n; j++) {
+            if (arr[i][j] == 0  && !visited[i][j]) {
+                visited[i][j] = true;
+                dfs(i, j);
+                ans++;
+                res.push_back(cnt);
+                cnt = 0;
+            }
+
+        }
+    }
+
+    sort(res.begin(), res.end());
+    printf("%d\n", ans);
+    int size = res.size();
+    for(int i = 0;i<size ; i++)
+        printf("%d ", res[i]);
+
+    return 0;
+}
