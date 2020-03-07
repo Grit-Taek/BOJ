@@ -1,0 +1,26 @@
+#include <cstdio>
+
+int nodeHasW[500001];
+
+int main()
+{
+    int n, w;
+    int cnt = 0;
+    scanf("%d %d", &n,&w);
+    for(int i=0;i<n-1;i++)
+    {
+        int a,b;
+        scanf("%d %d", &a,&b);
+        nodeHasW[a]++;
+        nodeHasW[b]++;
+    }
+    for(int i=2;i<=n;i++)
+    {
+        if(nodeHasW[i] == 1)
+            cnt++;
+    }
+
+    double res = (double)w/(double)cnt;
+    printf("%.10lf" , res);
+    return 0;
+}
