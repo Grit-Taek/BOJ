@@ -1,0 +1,38 @@
+#include <cstdio>
+
+char arr[400][400];
+int main()
+{
+    int n,m;
+    scanf("%d %d", &n,&m);
+    char a = 0;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            int r,g,b;
+            scanf("%d %d %d", &r,&g,&b);
+            int res = 2126*r + 7152*g + 722*b;
+            if(res >=0 && res <510000)
+                a = '#';
+            else if(res >=51e4 && res <1020e3)
+                a = 'o';
+            else if(res >=1020e3 && res <153e4)
+                a = '+';
+            else if(res >=153e4 && res <2040e3)
+                a = '-';
+            else
+                a ='.';
+            arr[i][j] = a;
+        }
+    }
+
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+            printf("%c", arr[i][j]);
+        printf("\n");
+    }
+
+    return 0;
+}
