@@ -1,0 +1,59 @@
+#include <cstdio>
+
+int map[50][50];
+int n,m,k;
+int dx[4] = {-1,1,0,0};
+int dy[4] = {0,0,1,-1};
+bool visited[50][50];
+int cnt = 0;
+
+void dfs(int x , int y)
+{
+    for(int i=0;i<4;i++)
+    {
+        int px = x + dx[i];
+        int py = y + dy[i];
+
+        if(px < 0 || py < 0 || px >=n || py >=m) continue;
+        if(!visited[px][py] && map[px][py] != 0)
+        {
+            visited[px][py] = true;
+            dfs(px,py);
+        }
+    }
+
+}
+
+int main()
+{
+    int tc;
+    scanf("%d", &tc);
+    for(int i=0;i<tc;i++)
+    {
+        scanf("%d %d %d", &n,&m,&k);
+        for(int j=0;j<k;j++)
+        {
+            int a,b;
+            scanf("%d %d", &a,&b);
+            map[a][b] = 1;
+        }
+
+        for(int i=0;i<n;i++) {
+            for (int j = 0; j < m; j++) {
+                if (map[i][j] == 1 && !visited[i][j]) {
+                    visited[i][j] = true;
+                    dfs(i, j);
+                    cnt++;
+                }
+            }
+        }
+        printf("%d\n" , cnt);
+        cnt = 0;
+        for(int i=0;i<n;i++) {
+            for (int j = 0; j < m; j++) {
+                map[i][j] = 0;
+                visited[i][j] = false;
+            }
+        }
+    }
+}
