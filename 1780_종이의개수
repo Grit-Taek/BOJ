@@ -1,0 +1,54 @@
+#include <cstdio>
+
+int arr[2187][2187];
+int ans[3];
+void divCon(int x, int y, int n)
+{
+    int chk = arr[x][y];
+    for(int i=x;i<x+n ; i++)
+    {
+        for(int j=y; j< y+n; j++)
+        {
+            if(chk == -1 && arr[i][j] != -1)
+                chk = 2;
+            else if(chk == 0 && arr[i][j] != 0)
+                chk = 2;
+            else if(chk == 1 && arr[i][j] != 1)
+                chk = 2;
+
+            if(chk == 2)
+            {
+                int div = n / 3;
+                divCon(x,y,div);
+                divCon(x + div,y,div);
+                divCon(x + div * 2,y,div);
+                divCon(x,y+div,div);
+                divCon(x + div ,y + div  ,div);
+                divCon(x + div * 2,y + div,div);
+                divCon(x,y + div * 2,div);
+                divCon(x + div,y + div * 2,div);
+                divCon(x + div * 2,y + div*2,div);
+                return ;
+            }
+        }
+    }
+
+    if(chk == -1) ans[0]++;
+    else if (chk == 0) ans[1]++;
+    else if (chk == 1) ans[2]++;
+
+    return;
+}
+int main() {
+    int n;
+    scanf("%d", &n);
+    for (int i=0; i<n; i++)
+    {
+        for(int j=0;j<n;j++)
+            scanf("%d", &arr[i][j]);
+    }
+    divCon(0,0,n);
+
+    printf("%d\n%d\n%d" , ans[0] , ans[1] , ans[2]);
+    return 0;
+}
