@@ -1,0 +1,28 @@
+#include <cstdio>
+#include <algorithm>
+using namespace std;
+
+int temp[1000000];
+int dp[100000];
+int main()
+{
+
+    int n,k; // n == 온도 측정 날짜의 수 , k == 연속적인 날짜
+    scanf("%d %d", &n,&k);
+
+    for(int i=0;i<n;i++)
+        scanf("%d", &temp[i]);
+
+    for(int i=0;i<k;i++)
+        dp[0] += temp[i];
+
+    int res = dp[0];
+
+    for(int i = 1 ; i<=n-k ; i++)
+    {
+        dp[i] = dp[i-1] - temp[i-1] + temp[k+i-1];
+        res = max(res, dp[i]);
+    }
+    printf("%d", res);
+
+}
