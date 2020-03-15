@@ -1,0 +1,18 @@
+#include <cstdio>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    int zero = 0 , one = 0;
+    for(int i=0;i<n;i++)
+    {
+        int a;
+        scanf("%d", &a);
+        if(a == 0) zero++;
+        else one ++;
+    }
+    if(zero > one) printf("Junhee is not cute!");
+    else printf("Junhee is cute!");
+    
+    return 0;
+}
