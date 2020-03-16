@@ -1,0 +1,42 @@
+#include <cstdio>
+#include <vector>
+#include <utility>
+#include <algorithm>
+
+using namespace std;
+typedef pair<int,int> p;
+vector<p> v;
+int day = 0, res = 0, ans = 0, n;
+bool visited[20];
+
+void find(int day, int res)
+{
+    if(day <= n+1) ans = max(ans, res);
+
+    for(int i=day;i<=n;i++)
+    {
+        if(!visited[i])
+        {
+            visited[i] = true;
+            if(i + v[i].first <= n+1) find(i+v[i].first , res + v[i].second);
+            visited[i] = false;
+        }
+    }
+}
+int main()
+{
+    scanf("%d" ,&n);
+    v.push_back(make_pair(0,0));
+    for(int i=0;i<n;i++)
+    {
+        int t,p;
+        scanf("%d %d" , &t, &p);
+        v.push_back(make_pair(t,p));
+    }
+
+    find(1,0);
+    printf("%d", ans);
+    return 0;
+
+
+}
