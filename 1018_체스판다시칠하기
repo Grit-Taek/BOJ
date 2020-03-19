@@ -1,0 +1,75 @@
+#include <cstdio>
+#include <algorithm>
+
+using namespace std;
+
+char map[50][50];
+char tmp[8][8];
+int n,m;
+int ans = 987654321;
+char chk[8] = {'B', 'W','B','W','B','W','B','W'};
+char chk2[8] = {'W','B','W','B','W','B','W','B'};
+
+void bruteForce(int x,int y) {
+
+    int res = 0;
+    for(int i=0;i<8;i++)
+    {
+        for(int j=0;j<8;j++)
+            tmp[i][j] = map[x+i][y+j];
+    }
+
+    for(int i=0;i<8;i++)
+    {
+        if(i % 2 == 0)
+        {
+            for(int j=0;j<8;j++)
+            {
+                if(tmp[i][j] != chk[j]) res++;
+            }
+        }
+        else
+        {
+            for(int j=0;j<8;j++)
+            {
+                if(tmp[i][j] != chk2[j]) res++;
+            }
+        }
+    }
+    ans = min(ans, res);
+    res = 0;
+    for(int i=0;i<8;i++)
+    {
+        if(i % 2 == 0)
+        {
+            for(int j=0;j<8;j++)
+            {
+                if(tmp[i][j] != chk2[j]) res++;
+            }
+        }
+        else
+        {
+            for(int j=0;j<8;j++)
+            {
+                if(tmp[i][j] != chk[j]) res++;
+            }
+
+        }
+    }
+    ans = min(ans, res);
+}
+int main()
+{
+    scanf("%d %d", &n,&m);
+    for(int i=0;i<n;i++)
+        scanf("%s", map[i]);
+
+    for(int i=0;i<n-7;i++)
+    {
+        for(int j=0;j<m-7;j++)
+             bruteForce(i,j);
+    }
+
+    printf("%d" , ans);
+    return 0;
+}
