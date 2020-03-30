@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+void add(string &str1, string &str2, string &res)
+{
+    int size = max(str1.size() , str2.size());
+    int carry = 0;
+    for(int i=0;i<size;i++)
+    {
+        int a = (i < str1.size())? str1[i] - '0' : 0;
+        int b = (i < str2.size())? str2[i] - '0' : 0;
+        int sum = a + b + carry;
+        carry = sum/10;
+        res.push_back(sum%10 +'0');
+    }
+    reverse(res.begin() , res.end());
+    if(carry)
+        res.insert(res.begin() , '1');
+}
+int main()
+{
+    string str1, str2;
+    string res ="";
+    cin >> str1 >> str2;
+    reverse(str1.begin() , str1.end());
+    reverse(str2.begin() , str2.end());
+    add(str1,str2,res);
+    cout << res;
+    return 0;
+}
