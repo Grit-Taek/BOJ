@@ -1,0 +1,32 @@
+#include <cstdio>
+#include <algorithm>
+
+using namespace std;
+int a[50];
+int b[50];
+
+bool desc(int a, int b)
+{
+    return a > b ;
+}
+int main()
+{
+    int n;
+    scanf("%d", &n);
+    for(int i=0;i<n;i++)
+        scanf("%d", &a[i]);
+    for(int i=0;i<n;i++)
+        scanf("%d", &b[i]);
+
+    sort(a , a+n );
+    sort(b , b+n , desc );
+
+    int res = 0;
+    for(int i=0; i<n;i++)
+        res += a[i] * b[i];
+
+    printf("%d", res);
+    return 0;
+
+
+}
