@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    string str1,str2,str3,str4,str5;
+    cin >> str1 >> str2 >> str3 >> str4 >> str5;
+    int size1 = str1.size(), size2 = str2.size(),
+    size3 = str3.size(), size4 = str4.size(), size5 = str5.size();
+    for(int i=0;i<15;i++)
+    {
+        if(i < size1)
+            cout << str1[i];
+        if(i < size2)
+            cout << str2[i];
+        if(i < size3)
+            cout << str3[i];
+        if(i < size4)
+            cout << str4[i];
+        if(i < size5)
+            cout << str5[i];
+    }
+
+    return 0;
+}
