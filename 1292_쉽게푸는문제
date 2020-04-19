@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    int n,m;
+    cin >> n >> m;
+    string str;
+    str.push_back(0+'0');
+    for(int i = 1 ; i<= 1000 ; i++)
+    {
+        if(str.size() == 1000) break;
+        for(int j=0;j<i;j++)
+        {
+            str.push_back(i+'0');
+        }
+    }
+    int res = 0;
+    for(int i=n;i<=m;i++)
+        res += str[i] - '0';
+
+    printf("%d", res);
+    return 0;
+}
