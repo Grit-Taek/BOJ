@@ -1,0 +1,28 @@
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+using namespace std;
+
+int left[2000];
+int right[2000];
+int dp[2000][2000];
+int n;
+
+int cardGame(int x, int y)
+{
+    if(x == n || y == n) return 0;
+    int &ans = dp[x][y];
+    if(ans != -1) return ans;
+    if(left[x] > right[y]) return ans = right[y] + cardGame(x,y+1);
+    else return ans = max(cardGame(x+1, y), cardGame(x+1,y+1));
+}
+int main()
+{
+    scanf("%d", &n);
+    for(int i=0;i<n;i++) scanf("%d", &left[i]);
+    for(int i=0;i<n;i++) scanf("%d", &right[i]);
+    memset(dp , -1, sizeof(dp));
+    int res = cardGame(0,0);
+    printf("%d", res);
+    return 0;
+}
