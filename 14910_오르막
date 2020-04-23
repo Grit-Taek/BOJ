@@ -1,0 +1,20 @@
+#include <cstdio>
+
+int main()
+{
+    int n;
+    bool chk = true;
+    int a;
+    scanf("%d", &a);
+    while(scanf("%d", &n) != EOF)
+    {
+        if(a > n && chk) {
+            chk = false;
+        }
+        a = n;
+    }
+    if(chk) printf("Good\n");
+    else printf("Bad\n");
+
+    return 0;
+}
