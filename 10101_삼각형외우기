@@ -1,0 +1,28 @@
+#include <cstdio>
+
+int main()
+{
+    int a,b,c;
+    scanf("%d %d %d", &a,&b,&c);
+    if(a == 60 && b == 60 && c == 60 )  {
+        printf("Equilateral");
+        return 0;
+    }
+    if(a + b + c == 180)
+    {
+        if(a == b || a == c || b == c)
+        {
+            printf("Isosceles");
+            return 0;
+        }
+
+        if(a != b  && a != c && b != c)
+        {
+            printf("Scalene");
+            return 0;
+        }
+    } else{
+        printf("Error");
+        return 0;
+    }
+}
