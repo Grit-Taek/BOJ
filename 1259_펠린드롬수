@@ -1,0 +1,27 @@
+import java.util.*;
+import java.io.*;
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String str = br.readLine();
+		StringBuffer strBuffer = new StringBuffer();
+		while(true)
+		{	
+			if(str.charAt(0) == '0') break;
+			else
+			{
+				strBuffer.append(str);
+				String strReverse = strBuffer.reverse().toString();
+				if(str.equals(strReverse)) System.out.println("yes");
+				else System.out.println("no");
+			}
+			str = br.readLine();
+			strBuffer.setLength(0);
+		}
+		
+	}
+
+}
+
+
