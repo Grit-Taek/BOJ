@@ -1,0 +1,31 @@
+
+import java.io.*;
+import java.util.*;
+/*p는 수열의 첫번 째 수,q는 등차  (경우 1)
+ * p는 수열의 첫번 째 수, q는 등비  (경우 2)
+ * 이 수열이 등차인지 등비인지 구하고 다음 수를 구해
+ * */
+public class Main {
+
+	public static void main(String [] args) throws Exception {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		int [] arr = new int[n];
+		int answer = 0;
+		for(int i=0;i<n;i++)
+		{
+			st = new StringTokenizer(br.readLine());
+			int a = Integer.parseInt(st.nextToken());
+			arr[i] = a;
+		}
+		if(arr[1] - arr[0] == arr[2] - arr[1]) //등차 
+			answer = arr[n-1] + arr[1]-arr[0];
+		else 	// 등비 
+			answer = arr[n-1] * (arr[2]/arr[1]);
+		
+		System.out.println(answer);
+	}	
+}
+
