@@ -1,0 +1,60 @@
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void main(String [] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		while(true)
+		{
+			String str = br.readLine();
+			if(str.charAt(0) == '#') return;
+			int size = str.length();
+			int res = 0;
+			int w = 0;
+			for(int i=size-1;i>=0;i--)
+			{
+				int k = 0;
+				switch(str.charAt(i))
+				{
+					case '-':
+						k = 0;
+						break;
+					case '\\':
+						k = 1;
+						break;	
+					case '(':
+						k = 2;
+						break;
+					case '@':
+						k = 3;
+						break;
+					case '?':
+						k = 4;
+						break;
+					case '>':
+						k = 5;
+						break;
+					case '&':
+						k = 6;
+						break;
+					case '%':
+						k = 7;
+						break;
+					case '/':
+						k = -1;
+						break;
+					default :
+						break;
+				}
+				for(int j=0;j<w;j++) k *= 8;
+				res += k;
+				w++;
+			}
+			System.out.println(res);
+		}
+		
+		
+	}	
+}
