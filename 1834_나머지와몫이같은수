@@ -1,0 +1,28 @@
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void main(String [] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		long answer = 0;
+		long i=1,k=1;
+		while(true)
+		{
+			long num =(long)n*i;
+			num += k;
+			if(k== n) break;
+			else
+			{
+				answer += num;
+				k++;
+				i++;
+			}
+		}
+		System.out.println(answer);
+	
+	}	
+}
