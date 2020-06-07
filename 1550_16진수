@@ -1,0 +1,49 @@
+package dp;
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+
+	
+		public static void main(String args[]) throws IOException {
+			 
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+			String str = br.readLine();
+			int cnt = 0;
+			int sum = 0;
+			int ck = 1;
+			for(int i=str.length()-1;i>=0;i--)
+			{
+				double a = Math.pow(16, cnt);
+				if(str.charAt(i) == 'A') ck = 10 * (int)a;
+				else if(str.charAt(i) == 'B') ck = 11 * (int)a;
+				else if(str.charAt(i) == 'C') ck = 12 * (int)a;
+				else if(str.charAt(i) == 'D') ck = 13 * (int)a;
+				else if(str.charAt(i) == 'E') ck = 14 * (int)a;
+				else if(str.charAt(i) == 'F') ck = 15 * (int)a;
+				else if(str.charAt(i) == '0') ck = 0 * (int)a;
+				else if(str.charAt(i) == '1') ck = 1 * (int)a;
+				else if(str.charAt(i) == '2') ck = 2 * (int)a;
+				else if(str.charAt(i) == '3') ck = 3 * (int)a;
+				else if(str.charAt(i) == '4') ck = 4 * (int)a;
+				else if(str.charAt(i) == '5') ck = 5 * (int)a;
+				else if(str.charAt(i) == '6') ck = 6 * (int)a;
+				else if(str.charAt(i) == '7') ck = 7 * (int)a;
+				else if(str.charAt(i) == '8') ck = 8 * (int)a;
+				else if(str.charAt(i) == '9') ck = 9 * (int)a;
+				
+				sum += ck;
+				cnt++;
+			}
+			
+			bw.write(sum+"");
+			bw.flush();
+			bw.close();
+		}
+		
+}
+
+		
+
