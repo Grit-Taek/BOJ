@@ -1,0 +1,83 @@
+package dp;
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+
+	static int N;
+	static int[][] map;
+	static int[] depth;
+	static boolean[] visited;
+	public static void main(String args[]) throws IOException
+	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		map = new int[N+1][N+1];
+		visited = new boolean[N+1];
+		depth = new int[N+1];
+		while(true)
+		{
+			st = new StringTokenizer(br.readLine());
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			if(a == -1 && b == -1) break;
+			map[a][b] = map[b][a] = 1;
+
+		}
+		
+		int min = 100;
+		
+		for(int i=1;i<=N;i++)
+		{
+			bfs(i);
+			min = (min > depth[i])? depth[i] : min;
+		}
+		List<Integer> list = new ArrayList<>();
+		for(int i=1;i<=N;i++)
+			if(min == depth[i]) list.add(i);
+
+		bw.write(min +" " + list.size() +"\n");
+		for(int z : list)
+			bw.write(z+" ");
+		bw.flush();
+		bw.close();
+		
+	}
+	static void bfs(int start)
+	{
+		Queue<Pair> q = new LinkedList<>();
+		q.add(new Pair(start,0));
+		visited = new boolean[N+1];
+		visited[start] = true;
+		int max = 0;
+		while(!q.isEmpty())
+		{
+			Pair here = q.poll();
+			for(int i = 1; i<= N;i++)
+			{
+				if(visited[i] || map[here.x][i] == 0) continue;
+				q.add(new Pair(i,here.depth+1));
+				max = (max < here.depth+1)? here.depth+1 : max;
+				visited[i] = true;
+			}
+		}
+		
+		depth[start] = max;
+	}
+		
+	static class Pair {
+		int x;
+		int depth;
+		Pair(int x, int depth)
+		{
+			this.x = x;
+			this.depth = depth;
+		}
+	}
+}
+
+		
+
